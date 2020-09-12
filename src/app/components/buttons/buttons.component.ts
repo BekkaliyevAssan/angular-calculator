@@ -55,13 +55,13 @@ export class ButtonsComponent implements OnInit {
   }
 
   onResult() {
-    if(!this.operations.includes(this.enteredValue[this.enteredValue.length - 1])) {
+    if(!this.operations.includes(this.enteredValue[this.enteredValue.length - 1]) && this.enteredValue !== '') {
       this.result = eval(this.enteredValue)
       this.enteredValue = this.result.toString()
       this.buttonClick.emit(this.enteredValue)
     }
     else {
-      console.log('enter last number')
+      console.log('enter first or last number')
     }
   }
 }

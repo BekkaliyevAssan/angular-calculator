@@ -10,7 +10,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
     ButtonsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

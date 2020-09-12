@@ -1,0 +1,27 @@
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    padding: 1rem;
+}
+.buttons_item {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    height: 70px;
+    font-size: 20px;
+    width: 70px;
+    color: #b3b3b3;
+    cursor: pointer;
+    transition: 0.1s
+}
+.buttons_item:hover {
+    background: #313131;
+    transition: 0.1s
+}
+span {
+    font-size: 16px;
+}
+.key {
+    font-size: 24px;
+    color: #fff;
+}

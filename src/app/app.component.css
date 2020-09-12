@@ -1,0 +1,22 @@
+.calc-wrapper {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    height: 100vh;
+}
+.calc {
+    height: auto;
+    background: #404040;
+}
+input {
+    padding: 1rem;
+    height: 100px;
+    background: black;
+    font-size: 30px;
+    color: #fff;
+    text-align: end;
+    border: none;
+    display: grid;
+    align-items: center;
+    justify-items: end;
+}

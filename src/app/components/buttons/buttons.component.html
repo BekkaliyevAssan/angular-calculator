@@ -1,0 +1,30 @@
+<div class="buttons">
+    <div class="buttons_item">CE</div>
+    <div class="buttons_item" (click)="clear()">C</div>
+    <div class="buttons_item" (click)="backspace()">
+        <span class="material-icons">
+            backspace
+        </span>
+    </div>
+    <div class="buttons_item" (click)="onKeyEnter('/')">&divide;</div>
+
+    <div class="buttons_item key" (click)="onKeyEnter('7')">7</div>
+    <div class="buttons_item key" (click)="onKeyEnter('8')">8</div>
+    <div class="buttons_item key" (click)="onKeyEnter('9')">9</div>
+    <div class="buttons_item" (click)="onKeyEnter('*')">&times;</div>
+
+    <div class="buttons_item key" (click)="onKeyEnter('4')">4</div>
+    <div class="buttons_item key" (click)="onKeyEnter('5')">5</div>
+    <div class="buttons_item key" (click)="onKeyEnter('6')">6</div>
+    <div class="buttons_item" (click)="onKeyEnter('-')">-</div>
+
+    <div class="buttons_item key" (click)="onKeyEnter('1')">1</div>
+    <div class="buttons_item key" (click)="onKeyEnter('2')">2</div>
+    <div class="buttons_item key" (click)="onKeyEnter('3')">3</div>
+    <div class="buttons_item" (click)="onKeyEnter('+')">+</div>
+
+    <div class="buttons_item" (click)="operationSwitch()">±</div>
+    <div class="buttons_item key" (click)="onKeyEnter('0')">0</div>
+    <div class="buttons_item" (click)="onKeyEnter(',')">,</div>
+    <div class="buttons_item" (click)="onResult()">=</div>
+</div>

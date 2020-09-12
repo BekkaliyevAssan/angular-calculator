@@ -22,27 +22,26 @@ export class ButtonsComponent implements OnInit {
   }
 
   onKeyEnter(val) {
-    if(this.operations.includes(val) && val == this.enteredValue[this.enteredValue.length - 1]) {
+    if (this.operations.includes(val) && val == this.enteredValue[this.enteredValue.length - 1] || val == this.enteredValue[this.enteredValue.length - 1]) {
       console.log('repeated')
     } else {
-      if(this.enteredValue === '' && this.operations.includes(val) || val === '0' && this.enteredValue === '') {
+      if (this.enteredValue === '' && this.operations.includes(val) || val === '0' && this.enteredValue === '') {
         console.log('first is operation')
       } else {
-
         this.enteredValue += val
         this.buttonClick.emit(this.enteredValue)
         console.log('not-repeated')
       }
     }
   }
-  
+
   operationSwitch() {
-    if(this.enteredValue) {
+    if (this.enteredValue) {
       let res = (parseInt(this.enteredValue)) * -1
       this.enteredValue = res.toString()
       this.buttonClick.emit(this.enteredValue)
     }
-  }  
+  }
 
   clear() {
     this.enteredValue = ''
@@ -55,7 +54,7 @@ export class ButtonsComponent implements OnInit {
   }
 
   onResult() {
-    if(!this.operations.includes(this.enteredValue[this.enteredValue.length - 1]) && this.enteredValue !== '') {
+    if (!this.operations.includes(this.enteredValue[this.enteredValue.length - 1]) && this.enteredValue !== '') {
       this.result = eval(this.enteredValue)
       this.enteredValue = this.result.toString()
       this.buttonClick.emit(this.enteredValue)

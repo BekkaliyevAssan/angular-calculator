@@ -13,23 +13,34 @@ export class ButtonsComponent implements OnInit {
   public result: number = 0
   public array = []
   public typeOfPoeration: string
-
+  public operations = ['+', '-', '*', '/']
   constructor(
     private calcService: CalculatorUnderhoodService
   ) { }
 
   ngOnInit(): void {
-    console.log(eval("2*3"))
   }
 
   onKeyEnter(val) {
-    this.enteredValue += val
-    console.log(this.enteredValue)
-    this.buttonClick.emit(this.enteredValue)
+    if(this.operations.includes(val) && val == this.enteredValue[this.enteredValue.length - 1]) {
+      console.log('repeated')
+    } else {
+      if(this.enteredValue === '' && this.operations.includes(val)) {
+        console.log('first is operation')
+      } else {
+        this.enteredValue += val
+        this.buttonClick.emit(this.enteredValue)
+        console.log('not-repeated')
+      }
+    }
   }
   
   operationSwitch() {
-
+    if(this.enteredValue) {
+      let res = (parseInt(this.enteredValue)) * -1
+      this.enteredValue = res.toString()
+      this.buttonClick.emit(this.enteredValue)
+    }
   }  
 
   clear() {
@@ -43,8 +54,13 @@ export class ButtonsComponent implements OnInit {
   }
 
   onResult() {
-    this.result = eval(this.enteredValue)
-    this.enteredValue = this.result.toString()
-    this.buttonClick.emit(this.enteredValue)
+    if(!this.operations.includes(this.enteredValue[this.enteredValue.length - 1])) {
+      this.result = eval(this.enteredValue)
+      this.enteredValue = this.result.toString()
+      this.buttonClick.emit(this.enteredValue)
+    }
+    else {
+      console.log('enter last number')
+    }
   }
 }

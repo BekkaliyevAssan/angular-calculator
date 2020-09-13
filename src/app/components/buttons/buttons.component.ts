@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalculatorUnderhoodService } from 'src/app/services/calculator-underhood.service';
-import { parse } from 'path';
-import { constants } from 'buffer';
 
 @Component({
   selector: 'app-buttons',
@@ -83,25 +81,14 @@ export class ButtonsComponent implements OnInit {
   public tempArray = []
   public operatorArray = []
   onResult() {
-    for (let i of this.enteredValue) {
-      let operatorCounter = 1
-      if (this.operations.includes(i)) {
-        let index = this.enteredValue.indexOf(i)
-        this.operatorArray.push(index)
-        // this.enteredValue = this.removeCharacter(this.enteredValue, index)
-        console.log(this.enteredValue)
-        this.tempArray.push({ operator: i, value: this.enteredValue.substring(index, this.operatorArray[operatorCounter]) })
-        operatorCounter++
-        // left = index + 1
-        console.log(this.tempArray)
+    for (let i = 0; i < this.enteredValue.length; i++) {
+      if (this.operations.includes(this.enteredValue.charAt(i))) {
+        this.operatorArray.push(i)
+        let value = this.enteredValue.substring(i + 1).split(/[\s,+,*,/ -]+/)
+        this.tempArray.push({ operator: this.enteredValue.charAt(i), value: value[0] })
       }
     }
     console.log(this.operatorArray)
-  }
-
-  removeCharacter(str, char_pos) {
-    let part1 = str.substring(0, char_pos);
-    let part2 = str.substring(char_pos + 1, str.length);
-    return (part1 + part2);
+    console.log(this.tempArray)
   }
 }

@@ -81,6 +81,7 @@ export class ButtonsComponent implements OnInit {
   public tempArray = []
   public operatorArray = []
   onResult() {
+    this.tempArray.push({operator: 'first', value: this.enteredValue.split(/[\s,+,*,/ -]+/)[0]})
     for (let i = 0; i < this.enteredValue.length; i++) {
       if (this.operations.includes(this.enteredValue.charAt(i))) {
         this.operatorArray.push(i)
@@ -88,7 +89,14 @@ export class ButtonsComponent implements OnInit {
         this.tempArray.push({ operator: this.enteredValue.charAt(i), value: value[0] })
       }
     }
-    console.log(this.operatorArray)
+    // console.log(this.operatorArray)
+    // console.log(this.tempArray)
+
+    let tempRes
+
+    this.tempArray.map(item => {
+      
+    })
     console.log(this.tempArray)
   }
 }

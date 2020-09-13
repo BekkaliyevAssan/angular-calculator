@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CalculatorUnderhoodService } from 'src/app/services/calculator-underhood.service';
+import { parse } from 'path';
+import { constants } from 'buffer';
 
 @Component({
   selector: 'app-buttons',
@@ -22,11 +24,10 @@ export class ButtonsComponent implements OnInit {
   }
 
   onKeyEnter(val) {
-    if(val === '.' && this.enteredValue.includes('.')) {
+    if (val === '.' && this.enteredValue.includes('.')) {
       console.log('there is already .')
     }
-    else
-    {
+    else {
       if (this.operations.includes(val) && val == this.enteredValue[this.enteredValue.length - 1] || val === '.' && val == this.enteredValue[this.enteredValue.length - 1]) {
         console.log('repeated')
       } else {
@@ -59,14 +60,48 @@ export class ButtonsComponent implements OnInit {
     this.buttonClick.emit(this.enteredValue)
   }
 
+  onKeyEnterPercent() {
+    // if(this.enteredValue !== '' && this.enteredValue[this.enteredValue.length - 1] !== '%') {
+    //   this.enteredValue += '%'
+    //   this.buttonClick.emit(this.enteredValue)
+
+    //   let percent = parseInt(this.enteredValue) / 100
+    // }
+    // else console.log('operator error')
+  }
+
+  onKeyEnterRoot() {
+    // if(this.enteredValue[this.enteredValue.length - 1] !== '√') {
+    //   this.enteredValue += '√'
+    //   this.buttonClick.emit(this.enteredValue)
+    // }
+    //   else {
+    //   console.log('root square repeat')
+    // }
+  }
+
+  public tempArray = []
+  public operatorArray = []
   onResult() {
-    if (!this.operations.includes(this.enteredValue[this.enteredValue.length - 1]) && this.enteredValue !== '') {
-      this.result = eval(this.enteredValue)
-      this.enteredValue = this.result.toString()
-      this.buttonClick.emit(this.enteredValue)
+    for (let i of this.enteredValue) {
+      let operatorCounter = 1
+      if (this.operations.includes(i)) {
+        let index = this.enteredValue.indexOf(i)
+        this.operatorArray.push(index)
+        // this.enteredValue = this.removeCharacter(this.enteredValue, index)
+        console.log(this.enteredValue)
+        this.tempArray.push({ operator: i, value: this.enteredValue.substring(index, this.operatorArray[operatorCounter]) })
+        operatorCounter++
+        // left = index + 1
+        console.log(this.tempArray)
+      }
     }
-    else {
-      console.log('enter first or last number')
-    }
+    console.log(this.operatorArray)
+  }
+
+  removeCharacter(str, char_pos) {
+    let part1 = str.substring(0, char_pos);
+    let part2 = str.substring(char_pos + 1, str.length);
+    return (part1 + part2);
   }
 }

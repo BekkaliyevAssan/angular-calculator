@@ -17,6 +17,6 @@ input {
     text-align: end;
     border: none;
     display: grid;
-    width: 344px;
+    width: calc(392px - 2rem);
     transition: 0.2s;
 }

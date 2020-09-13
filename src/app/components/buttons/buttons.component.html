@@ -1,4 +1,14 @@
 <div class="buttons">
+    <div class="buttons_top">
+        <div class="buttons_item">MC</div>
+        <div class="buttons_item">MR</div>
+        <div class="buttons_item">M+</div>
+        <div class="buttons_item">M-</div>
+        <div class="buttons_item">MS</div>
+        <div class="buttons_item" (click)="onKeyEnterRoot()">&#8730;</div>
+        <div class="buttons_item" (click)="onKeyEnterPercent()">%</div>
+        <div class="buttons_item">1/x</div>
+    </div>
     <div class="buttons_item">CE</div>
     <div class="buttons_item" (click)="clear()">C</div>
     <div class="buttons_item" (click)="backspace()">

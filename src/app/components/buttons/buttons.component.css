@@ -9,7 +9,7 @@
     justify-items: center;
     height: 70px;
     font-size: 20px;
-    width: 70px;
+    width: 90px;
     color: #b3b3b3;
     cursor: pointer;
     transition: 0.1s
@@ -24,4 +24,16 @@ span {
 .key {
     font-size: 24px;
     color: #fff;
+}
+.buttons_top {
+    border-bottom: 1px solid #616161;
+    display: grid;
+    grid-column: 1 / -1;
+    margin: 0 -1rem;
+    padding: 0 1rem 1rem 1rem;
+    grid-template-columns: repeat(4, auto);
+    margin-bottom: 1rem;
+}
+.buttons_top .buttons_item {
+    font-size: 16px;
 }

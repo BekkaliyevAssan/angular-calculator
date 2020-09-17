@@ -59,13 +59,11 @@ export class ButtonsComponent implements OnInit {
   }
 
   onKeyEnterPercent() {
-    // if(this.enteredValue !== '' && this.enteredValue[this.enteredValue.length - 1] !== '%') {
-    //   this.enteredValue += '%'
-    //   this.buttonClick.emit(this.enteredValue)
-
-    //   let percent = parseInt(this.enteredValue) / 100
-    // }
-    // else console.log('operator error')
+    if(this.enteredValue !== '' && this.enteredValue[this.enteredValue.length - 1] !== '%') {
+      this.enteredValue += '%'
+      this.buttonClick.emit(this.enteredValue)
+    }
+    else console.log('operator error')
   }
 
   onKeyEnterRoot() {
@@ -89,14 +87,29 @@ export class ButtonsComponent implements OnInit {
         this.tempArray.push({ operator: this.enteredValue.charAt(i), value: value[0] })
       }
     }
-    // console.log(this.operatorArray)
-    // console.log(this.tempArray)
 
     let tempRes
-
-    this.tempArray.map(item => {
-      
-    })
     console.log(this.tempArray)
+    this.tempArray.forEach((item, index) => {
+      //if items value includes percentage and operator before is multiplication -> first make calculation then make a result.
+      if(item.value.includes('%') && item.operator == '*' || item.operator == '/') {
+        let tempPer = parseInt(item.value) / 100
+        item.value = tempPer.toString()
+      }
+      if(item.value.includes('%') && item.operator == '+' || item.operator == '-') {
+        let tempFirstVal = this.tempArray[index - 1].value
+        let tempSecondVal = this.tempArray[index].value
+        let tempResult = parseInt(tempFirstVal) * parseInt(tempSecondVal) / 100
+        console.log(tempResult)
+        //пизец костыль
+        this.tempArray[index].value = 0
+        this.tempArray[index - 1].value = tempResult.toString()
+      }
+      if(index == 0) tempRes = item.value
+      else
+      tempRes += item.operator + item.value
+    })
+    this.result = eval(tempRes)
+    this.buttonClick.emit(this.result.toString())
   }
 }

@@ -1,0 +1,13 @@
+<div class="wrapper">
+    <div class="wrapper_title">History</div>
+    <div class="history_content">
+        <div *ngFor='let d of data'>
+            <div class="history_content__item" (click)="onReturnExp(d)">
+                <span class="material-icons">
+                    history
+                </span>
+                {{d}}
+            </div>
+        </div>
+    </div>
+</div>

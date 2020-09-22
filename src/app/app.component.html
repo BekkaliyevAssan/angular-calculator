@@ -1,7 +1,7 @@
 <div class="calc-wrapper">
   <div class="calc">
     <div class="calc-history">
-      <span class="material-icons">
+      <span class="material-icons" (click)="toggleSidebar()">
         history
       </span>
     </div>
@@ -10,7 +10,10 @@
       [ngStyle]="{'font-size' : (inputValue.length > 10) ? '26px' : '40px'}">
     <div class="calc_memory"></div>
     <div class="calc_buttons">
-      <app-buttons (buttonClick)="buttonClick($event)" [enteredValue]="manuallyEntered"></app-buttons>
+      <app-buttons (buttonClick)="buttonClick($event)" [fromHistory]="fromHistoryValue"></app-buttons>
+    </div>
+    <div class="calc-history_content" [ngStyle]="{'right': (isVisible) ? '-392px' : '0'}">
+      <app-history-screen (fromHistory)="fromHistory($event)"></app-history-screen>
     </div>
   </div>
 </div>

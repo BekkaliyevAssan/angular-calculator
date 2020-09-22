@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ButtonsComponent } from './components/buttons/buttons.component';
+import { HistoryScreenComponent } from './components/history-screen/history-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    HistoryScreenComponent
   ],
   imports: [
     BrowserModule,

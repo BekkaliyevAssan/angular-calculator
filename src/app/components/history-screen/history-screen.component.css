@@ -1,0 +1,31 @@
+.wrapper {
+    position: relative;
+    height: calc(555px + 132px + 40px - 2rem);
+    width: calc(392px - 2rem);
+    background: #585858;
+    padding: 1rem;
+}
+.wrapper_title {
+    color: #fff;
+    font-size: 20px;
+}
+.history_content {
+    margin-top: 2rem;
+}
+.history_content__item {
+    height: 40px;
+    font-size: 18px;
+    color: #c7c7c7;
+    display: grid;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
+    transition: 0.1s;
+}
+.history_content__item:hover {
+    background: rgb(68, 68, 68);
+    transition: 0.1s;
+}

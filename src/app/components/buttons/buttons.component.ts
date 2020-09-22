@@ -7,9 +7,17 @@ import { CalculatorUnderhoodService } from 'src/app/services/calculator-underhoo
   styleUrls: ['./buttons.component.css']
 })
 export class ButtonsComponent implements OnInit {
+  _data
   @Output() buttonClick = new EventEmitter<string>()
-
-  @Input() enteredValue: string = ''
+  // get asDef() {
+  //   return this._data
+  // }
+  // @Input()
+  // set fromHistory(val) {
+  //   this.enteredValue = val
+  //   this.buttonClick.emit(this.enteredValue)
+  // }
+  public enteredValue: string = ''
   public result: number = 0
   public array = []
   public typeOfPoeration: string
@@ -21,7 +29,7 @@ export class ButtonsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   onKeyEnter(val) {
     if (val === '.' && this.enteredValue.includes('.') || val === '√' && this.enteredValue[this.enteredValue.length - 1] === '√') {
       console.log('there is repeated sign')
@@ -65,7 +73,6 @@ export class ButtonsComponent implements OnInit {
   }
 
   operationSwitch() {
-    
   }
 
   clear() {
@@ -80,12 +87,10 @@ export class ButtonsComponent implements OnInit {
     this.buttonClick.emit(this.enteredValue)
   }
 
-  onKeyEnterPercent() {
-  }
-
   public tempArray = []
   public operatorArray = []
   onResult() {
+    if (!this.operations.includes(this.enteredValue[this.enteredValue.length - 1])) {
     if(this.tempArray.length == 0)
     this.tempArray.push({operator: 'first', value: this.enteredValue.split(/[\s,+,*,/ -]+/)[0]})
     for (let i = 0; i < this.enteredValue.length; i++) {
@@ -140,12 +145,16 @@ export class ButtonsComponent implements OnInit {
     }
     tempRes += this.tempArray[i].operator + this.tempArray[i].value
   }
+  //using service for history
+  this.calcService.onAddHistory(tempRes)
+  
   //show the final result
   this.tempArray = []
   this.enteredValue = eval(tempRes)
-  this.tempArray.push({operator: 'first', value: eval(tempRes).toString()})
-  console.log(eval(tempRes))
+  // this.tempArray.push({operator: 'first', value: eval(tempRes).toString()})
+  // console.log(eval(tempRes))
   this.buttonClick.emit(eval(tempRes))
-  console.log(this.tempArray, 'array')
+  // console.log(this.tempArray, 'array')
   }
+}
 }

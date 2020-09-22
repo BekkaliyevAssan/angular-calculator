@@ -3,10 +3,16 @@
     justify-content: center;
     align-content: center;
     height: 100vh;
+    position: relative;
+    z-index: 20;
+    /* grid-template-columns: auto auto; */
 }
 .calc {
+    display: grid;
     height: auto;
+    position: relative;
     background: #404040;
+    /* z-index: 20; */
 }
 input {
     padding: 1rem;
@@ -34,4 +40,10 @@ input {
 .calc-history span:hover {
     color: #fff;
     transition: 0.1s;
+}
+.calc-history_content {
+    position: absolute;
+    transition: 0.2s;
+    z-index: -10;
+    top: 0;
 }

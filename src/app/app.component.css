@@ -20,3 +20,18 @@ input {
     width: calc(392px - 2rem);
     transition: 0.2s;
 }
+.calc-history {
+    display: grid;
+    justify-content: end;
+    background: black;
+    color: rgb(209, 209, 209);
+    padding: 1rem 1rem 0 0 ;
+    transition: 0.1s;
+}
+.calc-history span {
+    cursor: pointer;
+}
+.calc-history span:hover {
+    color: #fff;
+    transition: 0.1s;
+}

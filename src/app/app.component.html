@@ -1,9 +1,16 @@
 <div class="calc-wrapper">
   <div class="calc">
-    <input type="text" value="{{inputValue}}" placeholder="0" [ngStyle]="{'font-size' : (inputValue.length > 10) ? '26px' : '40px'}">
+    <div class="calc-history">
+      <span class="material-icons">
+        history
+      </span>
+    </div>
+    <input type="text" value="{{inputValue}}" placeholder="0"
+    (input)="onManualEnter($event.target.value)"
+      [ngStyle]="{'font-size' : (inputValue.length > 10) ? '26px' : '40px'}">
     <div class="calc_memory"></div>
     <div class="calc_buttons">
-      <app-buttons (buttonClick)="buttonClick($event)"></app-buttons>
+      <app-buttons (buttonClick)="buttonClick($event)" [enteredValue]="manuallyEntered"></app-buttons>
     </div>
   </div>
 </div>

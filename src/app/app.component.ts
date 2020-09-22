@@ -9,9 +9,15 @@ import { Operation } from './interfaces/operation';
 export class AppComponent {
   public inputValue: string = ''
   public inputArray = []
+  public manuallyEntered
   title = 'calculator';
 
   buttonClick(val) {
     this.inputValue = val
+  }
+
+  onManualEnter(value) {
+    this.manuallyEntered = value
+    console.log(value)
   }
 }

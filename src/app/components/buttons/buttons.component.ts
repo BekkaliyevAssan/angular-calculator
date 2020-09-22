@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CalculatorUnderhoodService } from 'src/app/services/calculator-underhood.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CalculatorUnderhoodService } from 'src/app/services/calculator-underhoo
 export class ButtonsComponent implements OnInit {
   @Output() buttonClick = new EventEmitter<string>()
 
-  public enteredValue: string = ''
+  @Input() enteredValue: string = ''
   public result: number = 0
   public array = []
   public typeOfPoeration: string
@@ -50,7 +50,11 @@ export class ButtonsComponent implements OnInit {
   }
   // variable for define index of last operator to delete last entered operation
   public lastOperator = 0
-  clearEntry() {    
+  clearEntry() {   
+    //if enteredValue contains only value, not bunch of operations 
+    let tempCe = this.enteredValue.split(/[\s,+,*,/ -]+/)
+    if(tempCe.length < 2) this.clear()
+
     for(let i = 0; i < this.enteredValue.length; i++) {
       if(this.operations.includes(this.enteredValue[i])) {
         this.lastOperator = i
@@ -61,11 +65,7 @@ export class ButtonsComponent implements OnInit {
   }
 
   operationSwitch() {
-    if (this.enteredValue) {
-      let res = (parseInt(this.enteredValue)) * -1
-      this.enteredValue = res.toString()
-      this.buttonClick.emit(this.enteredValue)
-    }
+    
   }
 
   clear() {

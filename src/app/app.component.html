@@ -10,7 +10,7 @@
       [ngStyle]="{'font-size' : (inputValue.length > 10) ? '26px' : '40px'}">
     <div class="calc_memory"></div>
     <div class="calc_buttons">
-      <app-buttons (buttonClick)="buttonClick($event)" [fromHistory]="fromHistoryValue"></app-buttons>
+      <app-buttons (buttonClick)="buttonClick($event)"></app-buttons>
     </div>
     <div class="calc-history_content" [ngStyle]="{'right': (isVisible) ? '-392px' : '0'}">
       <app-history-screen (fromHistory)="fromHistory($event)"></app-history-screen>

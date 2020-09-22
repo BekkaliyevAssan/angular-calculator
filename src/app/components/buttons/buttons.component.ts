@@ -48,16 +48,13 @@ export class ButtonsComponent implements OnInit {
       }
     }
   }
+  // variable for define index of last operator to delete last entered operation
   public lastOperator = 0
-  clearEntry() {
-    // let ce = this.enteredValue.split(/[\s,+,*,/ -]+/)
-    // console.log(ce)
+  clearEntry() {    
     for(let i = 0; i < this.enteredValue.length; i++) {
       if(this.operations.includes(this.enteredValue[i])) {
         this.lastOperator = i
       }
-      // this.enteredValue = this.enteredValue.substring(0, lastOperator - 1)
-      // this.buttonClick.emit(this.enteredValue)
     }
     this.enteredValue = this.enteredValue.substring(0, this.lastOperator)
     this.buttonClick.emit(this.enteredValue)
@@ -89,6 +86,7 @@ export class ButtonsComponent implements OnInit {
   public tempArray = []
   public operatorArray = []
   onResult() {
+    if(this.tempArray.length == 0)
     this.tempArray.push({operator: 'first', value: this.enteredValue.split(/[\s,+,*,/ -]+/)[0]})
     for (let i = 0; i < this.enteredValue.length; i++) {
       if (this.operations.includes(this.enteredValue.charAt(i))) {
@@ -143,6 +141,11 @@ export class ButtonsComponent implements OnInit {
     tempRes += this.tempArray[i].operator + this.tempArray[i].value
   }
   //show the final result
+  this.tempArray = []
+  this.enteredValue = eval(tempRes)
+  this.tempArray.push({operator: 'first', value: eval(tempRes).toString()})
   console.log(eval(tempRes))
+  this.buttonClick.emit(eval(tempRes))
+  console.log(this.tempArray, 'array')
   }
 }

@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CalculatorUnderhoodService {
-  isSidebarVisible: boolean = true
+  isSidebarVisible: boolean = false
   sidebarVisibleChange: Subject<boolean> = new Subject<boolean>()
   public tempHistory = []
   history

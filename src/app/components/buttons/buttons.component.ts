@@ -48,6 +48,20 @@ export class ButtonsComponent implements OnInit {
       }
     }
   }
+  public lastOperator = 0
+  clearEntry() {
+    // let ce = this.enteredValue.split(/[\s,+,*,/ -]+/)
+    // console.log(ce)
+    for(let i = 0; i < this.enteredValue.length; i++) {
+      if(this.operations.includes(this.enteredValue[i])) {
+        this.lastOperator = i
+      }
+      // this.enteredValue = this.enteredValue.substring(0, lastOperator - 1)
+      // this.buttonClick.emit(this.enteredValue)
+    }
+    this.enteredValue = this.enteredValue.substring(0, this.lastOperator)
+    this.buttonClick.emit(this.enteredValue)
+  }
 
   operationSwitch() {
     if (this.enteredValue) {
